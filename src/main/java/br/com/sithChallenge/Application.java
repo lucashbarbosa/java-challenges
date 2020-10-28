@@ -1,4 +1,4 @@
-package br.com.sithChallenge.Application;
+package br.com.sithChallenge;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
