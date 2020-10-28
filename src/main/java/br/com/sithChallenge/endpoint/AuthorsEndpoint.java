@@ -2,30 +2,46 @@ package br.com.sithChallenge.endpoint;
 
 
 import br.com.sithChallenge.model.Authors;
+import br.com.sithChallenge.repository.AuthorsRepository;
+import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/authors")
 public class AuthorsEndpoint {
+    private final AuthorsRepository authorsDAO;
+
+    @Autowired
+    public AuthorsEndpoint(AuthorsRepository authorsDAO){
+        this.authorsDAO = authorsDAO;
+    }
 
     @GetMapping("/{id}")
-    public String listAll(@PathVariable("id") Long id){
-        String message = id.equals(3) ? id.toString() : "Welcome to the Sith Order, **Darth Vader**, your id is " + id.toString();
+    public ResponseEntity<?> listById(@PathVariable("id") Long id){
 
-        return message;
+        Optional<Authors> author = authorsDAO.findById(id);
+
+        return new ResponseEntity<>(author, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@RequestBody Authors author){
+
+        return new ResponseEntity<>(authorsDAO.save(author), HttpStatus.OK);
 
     }
     @PostMapping
-    public String authors (@RequestBody  Authors author){
-        String message;
+    public ResponseEntity<?> addAuthor(@RequestBody Authors author){
 
-            message = String.format(author.getName() + " was born in " + new SimpleDateFormat("yyyy-MM-dd").format(author.getBirthDate()));
-
-
-        return message;
+        return new ResponseEntity<>(authorsDAO.save(author), HttpStatus.CREATED);
     }
 
 }

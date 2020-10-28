@@ -6,10 +6,11 @@ package br.com.sithChallenge.model;
 import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
+public class Authors extends AbstractEntity{
 
-public class Authors {
     private String name;
-    private Date birthDate;
+    private String birthDate;
 
     public String getName() {
         return name;
@@ -19,11 +20,11 @@ public class Authors {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 }
