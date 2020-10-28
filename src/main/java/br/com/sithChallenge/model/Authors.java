@@ -6,8 +6,8 @@ package br.com.sithChallenge.model;
 import javax.persistence.Entity;
 import java.util.Date;
 
-@Entity
-public class AuthorsModel {
+
+public class Authors {
     private String name;
     private Date birthDate;
 
