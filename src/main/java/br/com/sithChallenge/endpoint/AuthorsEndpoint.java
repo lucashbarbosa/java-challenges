@@ -3,14 +3,11 @@ package br.com.sithChallenge.endpoint;
 
 import br.com.sithChallenge.model.Authors;
 import br.com.sithChallenge.repository.AuthorsRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @RestController
