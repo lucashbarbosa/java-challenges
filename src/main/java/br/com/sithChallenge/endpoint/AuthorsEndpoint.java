@@ -44,4 +44,12 @@ public class AuthorsEndpoint {
         return new ResponseEntity<>(authorsDAO.save(author), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAuthor(@PathVariable Long id){
+
+        authorsDAO.deleteById(id);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
+
 }
